@@ -1,14 +1,6 @@
 public with sharing class CarInfoController {
 
 
-    @AuraEnabled(cacheable=false)
-    public static Decimal getPriceOfRecord(Id recordId){
-        List<Car_Booking_Detail__c> bookingDet = [SELECT Total_Price__c FROM Car_Booking_Detail__c WHERE 
-                                                   Id= :recordId ];
-        Decimal price = bookingDet[0].Total_Price__c;
-        return price;
-    }
-
     @AuraEnabled(cacheable=true)
     public static List<Car_Info__c> filteredCarList(String seater,String groupOpt,String transmissionOpt ,Date startDate, Date endDate){
         
